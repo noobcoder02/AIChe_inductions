@@ -114,6 +114,14 @@ h3{
     padding-right: 0.4rem;
     transition: opacity ease-out 300ms;
 }
+.quiz::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f059";
+    opacity: 0;
+    padding-right: 0.4rem;
+    transition: opacity ease-out 300ms;
+}
 
 .navbar-items:hover.home::before {
     opacity: 1;
@@ -128,6 +136,9 @@ h3{
     opacity: 1;
 }
 .navbar-items:hover.gallery::before {
+    opacity: 1;
+}
+.navbar-items:hover.quiz::before {
     opacity: 1;
 }
 
