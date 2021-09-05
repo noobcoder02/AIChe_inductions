@@ -25,7 +25,7 @@ a:hover{
     inset: 0;
     /* background-color: brown; */
     transform: translateX(-100%);
-    transition: all ease-out 250ms;
+    transition: all ease-out 350ms;
     z-index: -1;
 }
 
@@ -39,20 +39,29 @@ a:hover{
     background: rgb(0, 0, 0);
 }
 
+h3{
+    font-weight: 700;
+}
+
 /* ----------------------------------------------------------- */
 
 .navbar{
     display:flex;
-    display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
     padding: 1rem;
+    font-size: 1.12rem;
+    font-weight: 300;
 }
 
 .navbar-items{
     color: rgb(32, 32, 32);
     position: relative;
+}
+
+.navbar .icon{
+    display: none;
 }
 
 .navbar-items::before
@@ -71,7 +80,7 @@ a:hover{
     content: "\f015";
     opacity: 0;
     padding-right: 0.4rem;
-    transition: opacity ease-out 350ms;
+    transition: opacity ease-out 300ms;
 }
 .about::before {
     font-family: "Font Awesome 5 Free"; 
@@ -79,7 +88,7 @@ a:hover{
     content: "\f129";
     opacity: 0;
     padding-right: 0.4rem;
-    transition: opacity ease-out 350ms;
+    transition: opacity ease-out 300ms;
 }
 .team::before {
     font-family: "Font Awesome 5 Free"; 
@@ -87,7 +96,7 @@ a:hover{
     content: "\f0c0";
     opacity: 0;
     padding-right: 0.4rem;
-    transition: opacity ease-out 350ms;
+    transition: opacity ease-out 300ms;
 }
 .contact::before {
     font-family: "Font Awesome 5 Free"; 
@@ -95,7 +104,7 @@ a:hover{
     content: "\f2bb";
     opacity: 0;
     padding-right: 0.4rem;
-    transition: opacity ease-out 350ms;
+    transition: opacity ease-out 300ms;
 }
 .gallery::before {
     font-family: "Font Awesome 5 Free"; 
@@ -103,7 +112,7 @@ a:hover{
     content: "\f302";
     opacity: 0;
     padding-right: 0.4rem;
-    transition: opacity ease-out 350ms;
+    transition: opacity ease-out 300ms;
 }
 
 .navbar-items:hover.home::before {
@@ -130,11 +139,64 @@ a:hover{
     background-color: rgba(0, 0, 0, 0.575);
     height: 0.2rem;
     transform: scale(0, 1);
-    transition: transform ease-in 350ms;
+    transition: transform ease-out 200ms;
 }
 
 .navbar-items:hover::after{
     transform: scale(1, 1);
+}
+
+@media screen and (max-width: 760px) {
+    .navbar a:not(:first-child) {display: none;}
+    .navbar a.icon {
+      float: right;
+      display: block;
+    }
+    .navbar.responsive {
+        position: relative;
+        display: block;
+    }
+    .navbar.responsive .icon {
+        /* position: relative; */
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+    }
+    .navbar.responsive .navbar-items {
+      /* float: none; */
+      display: block;
+      z-index: 0;
+      padding: 1rem;
+      /* text-align: left; */
+    }
+    .navbar-items.home::before {
+        opacity: 1;
+    }
+    .navbar-items.about::before {
+        opacity: 1;
+    }
+    .navbar-items.team::before {
+        opacity: 1;
+    }
+    .navbar-items.contact::before {
+        opacity: 1;
+    }
+    .navbar-items.gallery::before {
+        opacity: 1;
+    }
+    .navbar-items::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -30px;
+        background-color: rgba(255, 255, 255, 0.7);
+        height: initial;
+        width: 100vw;
+        transform: scale(1);
+        transition: none;
+        z-index: -1;
+    }
 }
 
 /* -------------------------------------------------------- */
@@ -152,14 +214,29 @@ header{
 .hero{
     display: grid;
     grid-template-columns: 50% 50%;
-    padding: 4rem 1.5rem;
+    padding: 4rem 2.5rem;
     align-items: center;
 }
 
 .hero-desc{
-    padding-right: 5rem;
+    padding: 0 3rem;
     text-align: justify;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 3px rgba(95, 95, 95, 0.808);
+}
+
+.hero-desc h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.hero-desc p{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.hero-img{
+    width: calc(10rem + 25vw);
+    margin: 3rem auto;
 }
 
 /* ------------------------------------------------------- */
@@ -189,6 +266,7 @@ header{
 .mission-desc{
     width: 50%;
     font-size: 1.3rem;
+    font-weight: 600;
     display: inline-block;
     position: relative;
 }
@@ -236,14 +314,16 @@ header{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-gap: 1rem;
-    padding: 1rem;
-    /* max-width: 1920px; */
+    padding: 0.9rem;
+    justify-items: center;
     margin: 0 auto;
+    overflow-x: auto;
 }
 
 .cardd{
     position: relative;
     background: rgba(0, 0, 0, .9);
+    margin: 0 auto;
 }
 
 .card-imgs{
@@ -262,7 +342,8 @@ header{
     transition: opacity ease-out 250ms;
 }
 
-.cardd:hover .card-text{
+.cardd:hover .card-text,
+.cardd:focus .card-text{
     opacity: 1;
 }
 
@@ -290,19 +371,30 @@ header{
     transform: scale(1,0);
 }
   
-.cardd:hover::before {
+.cardd:hover::before,
+.cardd:focus::before {
     transform: scale(1.05, 1);
 }
   
-.cardd:hover::after {
+.cardd:hover::after,
+.cardd:focus::after {
     transform: scale(1, 1.05);
 }
 
-.cardd:hover .card-imgs{
+.cardd:hover .card-imgs,
+.cardd:focus .card-imgs{
     opacity: 0.2;
 }
 
 /* ---------------------------------------------------------------- */
+
+h4{
+    font-weight: 700;
+}
+
+.ad-desc, .le-desc{
+    font-weight: 600;
+}
 
 footer{
     background-image: linear-gradient(-30deg, rgba(218, 80, 165, 0.5), rgba(45, 45, 224, 0.01));
@@ -312,6 +404,11 @@ footer{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+}
+
+.address,
+.latest-events h4{
+    text-align: center;
 }
 
 #footer {
@@ -434,3 +531,51 @@ footer{
     background: #FF0000;
     color: #fff;
 }
+
+.copyright{
+    text-align: center;
+    padding: 0.7rem;
+}
+
+/* -------------------------------------------------------- */
+
+@media screen and  (max-width: 760px) {
+    .hero{
+        grid-template-columns: 100%;
+        grid-template-rows: auto, auto;
+        padding: 2rem 2.5rem;
+    }
+
+    .hero-desc h1{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .hero-desc p{
+        font-size: 1rem;
+    }
+
+    .cards{
+        grid-template-columns: 100%;
+        grid-template-rows: repeat (3, auto );
+    }
+
+    .footer{
+        grid-template-columns: 100%;
+        grid-template-rows: repeat (3, auto );
+    }
+
+    .social-btns{
+        padding: 3rem;
+    }
+
+    .carousel{
+        width: 90%;
+    }
+
+    .mission-desc{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
